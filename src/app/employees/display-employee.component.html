@@ -1,0 +1,101 @@
+<div class="panel panel-primary">
+<div class="panel-heading bgclour">
+    <h3 class="panel-title">{{employee.name}}</h3>
+  </div> 
+ <div class="panel-body bgclours">
+    <div class="col-xs-11">
+     <div class="row">
+       <div class="col-xs-4">
+           <img class="imageclass" src= {{employee.photoPath}}>
+       </div>
+       <div class="col-xs-8">
+         <div class="row verticalalign">
+           <div class="col-xs-6">
+             Gender
+           </div>
+           <div class="col-xs-6 textclass">
+             : {{ employee.gender}}
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-xs-6">
+             DateOfBirth
+           </div>
+           <div class="col-xs-6">
+             : {{ employee.DateOfBirth | date}}
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-xs-6">
+             Contact Preference
+           </div>
+           <div class="col-xs-6">
+             : {{ employee.ContactPreference}}
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-xs-6">
+             Phone
+           </div>
+           <div class="col-xs-6">
+            : {{ employee.PhoneNumber}}
+           </div>
+         </div>
+      
+
+         <div class="row">
+           <div class="col-xs-6">
+             Email
+           </div>
+           <div class="col-xs-6">
+             : {{ employee.email}}
+           </div>
+          </div>
+         
+         <div class="row">
+           <div class="col-xs-6">
+             Department
+           </div>
+           <div class="col-xs-6" [ngSwitch]="employee.Department">
+           : 
+           <span *ngSwitchCase="1">Help Desk</span>
+           <span *ngSwitchCase="2">Admin</span>
+           <span *ngSwitchCase="3">HR</span>
+           <span *ngSwitchCase="4">IT</span>
+           <span *ngSwitchCase="5">PayRoll</span>
+           <span *ngSwitchDefault >N/A</span>
+           
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-xs-6">
+             Is Active
+           </div>
+           <div class="col-xs-6">
+             : {{ employee.isActive}}
+           </div>
+         </div>
+
+         <div class="row">
+            <div class="col-xs-6">
+              Office Address
+            </div>
+            <div class="col-xs-6 colrs">
+              : {{ employee.offcAddr}}
+            </div>
+
+       </div>
+     </div>
+   </div>
+ 
+ </div>
+ <div class="panel-footer">
+   <button class="btn btn-primary" (click)="viewEmployee()">View</button>
+   <button class="btn btn-primary" (click)="editEmployee()">Update</button>
+   <button class="btn btn-danger" (click)="deleteEmployee()">Delete</button>
+ </div>
+</div>

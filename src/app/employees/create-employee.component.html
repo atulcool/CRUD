@@ -1,0 +1,125 @@
+<form #employeeForm="ngForm" id="employeeForm" (ngSubmit)="saveEmployee()">
+    <div class="panel-heading">
+      <h5>{{panelTittle}}</h5>
+    </div>
+
+    <div class="panel-body">
+       <div class="form-group" [class.has-error]="name.invalid && name.touched" [class.has-success]="name.valid">
+        <label for="name" class="control-label">Name</label>
+        <input required id="name" type="text" name = "name" [(ngModel)]="employees.name" class ="form-control" #name="ngModel">
+        <span class="help-block" *ngIf="name.invalid && name.touched">
+       * Name is required
+        </span>
+      </div>
+      
+      <div class="form-group" [class.has-error]="email.invalid && email.touched" [class.has-success]="email.valid">
+        <label class="control-label">Email</label>
+        <input id="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" type="text" name="emailss" [(ngModel)]="employees.email"  class="form-control" #email="ngModel">
+        <span class="help-block" *ngIf="email.errors?.required && email.touched">
+          * Email is Required
+        </span>
+        <span class="help-block" *ngIf="email.errors?.pattern && email.touched">
+          * Email is invalid
+        </span>
+      </div>
+
+        <div class="form-group" [class.has-error]="contactvar.invalid && contactvar.touched" [class.has-success]="contactvar.valid">
+          <label class="control-label">Contact Number</label>
+          <input required id="contactNumber" type="text" name="contactNumber" [(ngModel)]="employees.PhoneNumber"  class="form-control" #contactvar="ngModel">
+          <span class="help-block" *ngIf="contactvar.invalid && contactvar.touched">
+            * Contact Number is Required
+          </span>
+        </div>
+
+        <div class="form-group" [class.has-error]="cpref.touched && cpref.invalid">
+            <label class="control-label">Contact Preference</label>
+            <div class="form-control">
+              <label class="radio-inline"><input type="radio" required value="Email" name="Email" #cpref="ngModel" [(ngModel)]="employees.ContactPreference">Email</label>
+              <label class="radio-inline"><input type="radio" required value="ContactNumber" name="ContactNumber" #cpref="ngModel" [(ngModel)]="employees.ContactPreference">Contact Number</label>
+            </div>
+            <span class="help-block" *ngIf="cpref.touched && cpref.invalid">
+                * Please select contact preference
+            </span>
+        </div>
+
+      <div class="form-group" [class.has-error]="gender.touched && gender.invalid">
+          <label class="control-label" >Gender</label>
+          <div class="form-control" >
+            <label class="radio-inline"><input type="radio" required value="Male" name="gender" #gender="ngModel" [(ngModel)]="employees.gender">Male</label>
+            <label class="radio-inline"><input type="radio" required value="Female" name="gender" #gender="ngModel" [(ngModel)]="employees.gender">Female</label>
+          </div>
+          <span class="help-block" *ngIf="gender.touched && gender.invalid">
+              * Please select gender
+          </span>
+      </div>
+
+      <div class="form-group">
+          <div class="form-control">
+            <label class="checkbox-inline">
+              <input type="checkbox" name="isChecked" [(ngModel)]="employees.isActive" >Is Active
+            </label>
+          </div> 
+      </div>
+
+      <div class="form-group" [class.has-error]="depart.touched && depart.invalid">
+          <div class="form-control">
+            <label for="department" class="control-label">Departments </label>
+             <select id="department" required name="department" #depart="ngModel"[(ngModel)]="employees.Department">
+               <option *ngFor = "let dept of departments" [value]="dept.id">
+                 {{dept.name}}
+               </option>
+              </select>
+          </div> 
+          <span class="help-block" *ngIf="depart.touched && depart.invalid">
+            * Please select Department 
+          </span>
+      </div>
+
+      <div class="form-group" [class.has-error]="dob.touched && dob.invalid">
+        <div class="form-control">
+          <label class="control-label">Date of Birth</label>
+          <input id="DateOfBirth" required name ="DateOfBirth" #dob="ngModel" [(ngModel)]="employees.DateOfBirth" type="date">
+        </div>
+        <span class="help-block" *ngIf="dob.touched && dob.invalid">
+          * Please provide Date of Birth
+        </span>
+      </div>
+      
+      <div class="form-group" >
+          <div class="form-control">
+          <label class="control-label verticalalign">Office Address</label>
+          <textarea rows="1" cols="50" id="officeAddr" disabled type="textarea" name="officeAddr" #officeAddr="ngModel" [(ngModel)]="employees.offcAddr" value = "9th Floor, Sai Radhe Complex, RBM Road, Sangamvadi, Pune, Maharashtra 411001">
+          </textarea> </div>       
+      </div>
+      
+      
+
+      
+      <div class="form-group" [class.has-error]="picpath.touched && picpath.invalid">
+          <div class="form-control">
+          <label class="control-label">Photo Path</label>
+          <input  id="photoPath" required type="text" name="photoPath" #picpath="ngModel" [(ngModel)]="employees.photoPath">
+          </div>
+          <span class="help-block" *ngIf="picpath.touched && picpath.invalid">
+            * Please provide photo path
+          </span>
+      </div>
+      
+
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="togglePreview()" type="button">{{!previewPhoto ? "Show" : "Hide"}} Preview</button>
+      </div>
+
+      <div class="form-group">
+        <img [src]="photoPath" class="imageclass" *ngIf = "previewPhoto">
+      </div>
+
+      <div class="panel-footer">
+          <button type="button" class="btn btn-primary" [disabled]="employeeForm.invalid" (click)="saveEmployee1()">Save</button>
+      </div>
+    </div>    
+ 
+</form>
+
+
+

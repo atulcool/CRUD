@@ -1,0 +1,30 @@
+.imageclass
+{
+    width : 160px;
+    height : 160px;
+}
+
+.verticalalign
+{
+    display: flex;
+    align-items: center;
+}
+
+.bgclour
+{
+    background-color: blue;
+    text-emphasis-color: black
+}
+.bgclours
+{
+    background-color: whitesmoke;
+}
+
+.colrs
+{
+    color: red;
+    font : bold;
+
+}
+
+
